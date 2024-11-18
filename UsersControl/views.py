@@ -14,22 +14,23 @@ def get_users(request):
         return JsonResponse(user_list, safe=False)
     elif request.method == 'POST':
         return create_user(request)
+    elif request.method == "DELETE":
+        return delete_user(request)
     
 @csrf_exempt
 def user_path(request, id):
-    if request.method == 'DELETE':
-        return delete_user(request, id)
-    elif request.method == 'PUT':
+    if request.method == 'PUT':
         return update_user(request, id)
 
+def delete_user(request):
+    data = json.loads(request.body)
+    for item in data:
+        user = get_object_or_404(User, id = item["id"])
+        user.delete()
+
+    return JsonResponse(f'Eliminación exitosa', safe=False)
+
 # funciones user_path
-def delete_user(request, id):
-    user = get_object_or_404(User, id = id)
-    name = user.name
-    user.delete()
-
-    return JsonResponse(f'usuario {name} eliminado', safe=False)
-
 def update_user(request, id):
     user = get_object_or_404(User, id=id)
     data = json.loads(request.body)
