@@ -16,12 +16,10 @@ def get_users(request):
         return create_user(request)
     elif request.method == "DELETE":
         return delete_user(request)
+    elif request.method == "PUT":
+        return update_user(request)
     
-@csrf_exempt
-def user_path(request, id):
-    if request.method == 'PUT':
-        return update_user(request, id)
-
+#funciones url users
 def delete_user(request):
     data = json.loads(request.body)
     for item in data:
@@ -30,19 +28,21 @@ def delete_user(request):
 
     return JsonResponse(f'Eliminación exitosa', safe=False)
 
-# funciones user_path
-def update_user(request, id):
-    user = get_object_or_404(User, id=id)
+def update_user(request):
     data = json.loads(request.body)
 
-    user.blocked = data['blocked']
-    user.last_seen = data['last_seen']
+    response = []
 
-    response = {
-        'id': user.id,
-        'last_seen': user.last_seen,
-        'blocked': user.blocked
-    }
+    for item in data:
+        user = get_object_or_404(User, id=item["id"])
+        user.blocked = item['blocked']
+        user.updated_at = item['updated_at']
+
+        response.append ({
+            'id': user.id,
+            'updated_at': user.updated_at,
+            'blocked': user.blocked
+        })
 
     return JsonResponse(response, safe=False)
 
