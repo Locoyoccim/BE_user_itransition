@@ -37,6 +37,7 @@ def update_user(request):
         user = get_object_or_404(User, id=item["id"])
         user.blocked = item['blocked']
         user.updated_at = item['updated_at']
+        user.save()
 
         response.append ({
             'id': user.id,
