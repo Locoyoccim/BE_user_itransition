@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns =[
     path('users/', views.get_users),
+    path('login/', views.login)
 ]

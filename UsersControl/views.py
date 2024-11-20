@@ -19,6 +19,11 @@ def get_users(request):
     elif request.method == "PUT":
         return update_user(request)
     
+@csrf_exempt
+def login(request):
+    if request.method == 'POST':
+        return login_user(request)
+    
 #funciones url users
 def delete_user(request):
     data = json.loads(request.body)
@@ -76,3 +81,19 @@ def create_user(request):
     }
 
     return JsonResponse(response, safe=False, status=201)
+
+# FUNCIONES LOGIN
+def login_user(request):
+    data = json.loads(request.body)
+    email = data.get('email')
+
+    if not email:
+        return JsonResponse({"success": False, "message": "Email is required"}, status=400)
+    
+    user = User.objects.filter(email=email).first()
+
+    if user is None:
+        return JsonResponse({"success": False, "message": "User not found"}, status=404)
+    
+   
+    return JsonResponse({'message': 'Login exitoso'}, status=200)
