@@ -88,12 +88,12 @@ def login_user(request):
     email = data.get('email')
 
     if not email:
-        return JsonResponse({"success": False, "message": "Email is required"}, status=400)
+        return JsonResponse("Email is required", status=400)
     
     user = User.objects.filter(email=email).first()
     
     if user is None:
-        return JsonResponse({"success": False, "message": "User not found"}, status=404)
+        return JsonResponse("User not found", status=404)
     elif user.blocked:
         return JsonResponse("This user are blocked, call admin", safe=False, status=401)
 
