@@ -1,1 +1,1 @@
-web: python3 manage.py collectstatic --noinput && gunicorn gym_BE.wsgi --log-file -
+web: python3 manage.py collectstatic --noinput && gunicorn UserBEItransition.wsgi --log-file -
