@@ -29,11 +29,16 @@ SECRET_KEY = 'django-insecure-j%ikr(2zb&$+6f-0b8axg2r&^hiuy9+)nr%@bx25s$+@d990yr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
  
-ALLOWED_HOSTS = ['https://localhost:5173', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = [
+    'https://localhost:5173', 
+    '127.0.0.1', 
+    'beuseritransition-production.up.railway.app',
+    'localhost'
+ ]
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]
+CORS_ALLOWED_ORIGINS = ["http://localhost:5173", "beuseritransition-production.up.railway.app"]
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:5173",]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:5173", 'beuseritransition-production.up.railway.app']
 
 # Application definition
 
