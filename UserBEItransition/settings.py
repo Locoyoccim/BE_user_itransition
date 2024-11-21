@@ -32,13 +32,13 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = [
     'https://localhost:5173', 
     '127.0.0.1', 
-    'beuseritransition-production.up.railway.app',
+    'http://beuseritransition-production.up.railway.app',
     'localhost'
  ]
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:5173", "beuseritransition-production.up.railway.app"]
+CORS_ALLOWED_ORIGINS = ["http://localhost:5173", "http://beuseritransition-production.up.railway.app"]
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:5173", 'beuseritransition-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ["http://localhost:5173", 'http://beuseritransition-production.up.railway.app']
 
 # Application definition
 
@@ -94,7 +94,7 @@ DATABASES = {
     'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
 
-ROOT_URLCONF= 'UsersBEItransition.urls'
+ROOT_URLCONF= 'UserBEItransition.urls'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
