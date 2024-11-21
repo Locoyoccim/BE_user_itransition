@@ -33,11 +33,14 @@ ALLOWED_HOSTS = [
     'https://localhost:5173', 
     '127.0.0.1', 
     'beuseritransition-production.up.railway.app',
+    'https://fetransitiontask4-production.up.railway.app'
  ]
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:5173", "https://beuseritransition-production.up.railway.app"]
+CORS_ALLOWED_ORIGINS = ["http://localhost:5173", "https://beuseritransition-production.up.railway.app",
+                        "https://fetransitiontask4-production.up.railway.app"]
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost", 'https://beuseritransition-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ["http://localhost", 'https://beuseritransition-production.up.railway.app',
+                       'https://fetransitiontask4-production.up.railway.app' ]
 
 # Application definition
 
