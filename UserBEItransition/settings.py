@@ -32,13 +32,12 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = [
     'https://localhost:5173', 
     '127.0.0.1', 
-    'https://beuseritransition-production.up.railway.app',
-    'localhost'
+    'beuseritransition-production.up.railway.app',
  ]
 
 CORS_ALLOWED_ORIGINS = ["http://localhost:5173", "https://beuseritransition-production.up.railway.app"]
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:5173", 'https://beuseritransition-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ["http://localhost", 'https://beuseritransition-production.up.railway.app']
 
 # Application definition
 
@@ -133,6 +132,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
